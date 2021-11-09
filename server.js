@@ -15,12 +15,12 @@ const session = expressSession({
     cookie: { secure: false }
 })
 // Express App Config
+app.use(express.static('public'))
 app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(session)
 
 if (process.env.NODE_ENV === 'production') {
-    // app.use(express.static('public'))
     app.use(express.static(path.resolve(__dirname, 'public')))
 } else {
     const corsOptions = {
